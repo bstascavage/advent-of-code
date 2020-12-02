@@ -22,7 +22,8 @@ def main():
     """
     expense_list = load_file(EXPENSE_REPORT)
 
-    # Ensuring that every element in the list is set as an int
+    # Ensuring that every element in the list is set as an int.
+    # TODO: assumes all numbers are integers and are positive.  We should check this.
     expense_list = [int(i) for i in expense_list]
 
     print(expense_compare_two(expense_list, 2020))
@@ -61,23 +62,12 @@ def expense_compare_two(input_list, value):
         The multiplication product of the two integers whose sum equals the provided value.
         If no integers can be found, returns None.
     """
-    input_list.sort()
+    # Sets the list as a set for o(1) lookup of keys
+    expenses = set(input_list)
 
-    for first_entry in input_list:
-        # Since list is sorted, if double the current element is greater than the value,
-        # then we know that we couldn't find the value and should exit.
-        if (first_entry*2) < value:
-            for second_entry in input_list:
-                if first_entry == second_entry:
-                    continue
-                if (first_entry+second_entry) == value:
-                    return first_entry * second_entry
-                # Since list is sorted, if this conditional happens
-                # we can break out of the second loop
-                if (first_entry+second_entry) > value:
-                    break
-
-        return None
+    for expense in input_list:
+        if value - expense in expenses:
+            return expense * (value - expense)
 
 
 def expense_compare_three(input_list, value):
@@ -92,27 +82,11 @@ def expense_compare_three(input_list, value):
         The multiplication product of the three integers whose sum equals the provided value.
         If no integers can be found, returns None.
     """
-    input_list.sort()
-
-    for first_entry in input_list:
-        for second_entry in input_list:
-            # Since list is sorted, we can discard any entries
-            # if the first and second would be greater than the value
-            # regardless of what the third element is.
-            # We can also skip if the first and second entries are equal.
-            if (first_entry + second_entry + second_entry) >= value or first_entry == second_entry:
-                break
-            for third_entry in input_list:
-                if third_entry in (first_entry, second_entry):
-                    continue
-                if (first_entry + second_entry + third_entry) == value:
-                    return first_entry * second_entry * third_entry
-                # Since list is sorted, if this conditional happens
-                # we can break out of the third loop
-                if (first_entry + second_entry + third_entry) > value:
-                    break
-
-    return None
+    expenses = set(input_list)
+    for first_expense in input_list:
+        for second_expense in input_list:
+            if value - first_expense - second_expense in expenses:
+                return first_expense * second_expense * (value - first_expense - second_expense)
 
 
 if __name__ == "__main__":
