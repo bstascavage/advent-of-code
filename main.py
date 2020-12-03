@@ -5,8 +5,11 @@ import modules.exercises
 # print("Compare two: %s" % app.expense_compare_two(2020))
 # print("Compare three: %s" % app.expense_compare_three(2020))
 
-app = modules.exercises.Day2("inputs/day2/passwords.txt")
+# app = modules.exercises.Day2("inputs/day2/passwords.txt")
 
-print(app.count_valid_passwords_part1())
+# print(app.count_valid_passwords_part1())
 
-print(app.count_valid_passwords_part2())
+# print(app.count_valid_passwords_part2())
+
+app = modules.exercises.Day3("inputs/day3/map.txt")
+print(app.find_trees_in_path(3, 1))
