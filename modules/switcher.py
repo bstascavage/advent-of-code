@@ -14,7 +14,7 @@ class Switcher(object):
                            lambda: "Invalid function")
         return function()
 
-    def print_results(self, answer_one, answer_two):
+    def print_results(self, answer_one=None, answer_two=None):
         print("********%s*******" % self.exercise_name)
         print("Part 1: %s" % answer_one)
         print("Part 2: %s" % answer_two)
