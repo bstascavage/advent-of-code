@@ -15,10 +15,10 @@ class Day3:
         current_right = right_mov
         tree_count = 0
 
-        for i in range(1, len(self.map)):
-            # If the row we are on wouldn't be transversed with our "down movement"
-            # value, then skip it
-            if i % down_mov:
+        # Looping through each row of the map, skipping every N rows, where N is down_mov-1
+        for i in range(0, len(self.map), down_mov):
+            # Need to skip index 0 since we start the count at 1
+            if i == 0:
                 continue
             if self.map[i][current_right] == "#":
                 tree_count += 1
