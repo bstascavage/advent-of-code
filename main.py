@@ -12,4 +12,5 @@ import modules.exercises
 # print(app.count_valid_passwords_part2())
 
 app = modules.exercises.Day3("inputs/day3/map.txt")
-print(app.find_trees_in_path(3, 1))
+print(app.find_trees_in_path(1, 1) * app.find_trees_in_path(3, 1) *
+      app.find_trees_in_path(5, 1) * app.find_trees_in_path(7, 1) * app.find_trees_in_path(1, 2))
