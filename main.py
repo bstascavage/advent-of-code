@@ -1,16 +1,14 @@
-import modules.exercises
+import os
+from dotenv import load_dotenv
+from modules.switcher import Switcher
 
-# app = modules.exercises.Day1("inputs/day1/expense_report.txt")
+load_dotenv()
 
-# print("Compare two: %s" % app.expense_compare_two(2020))
-# print("Compare three: %s" % app.expense_compare_three(2020))
 
-# app = modules.exercises.Day2("inputs/day2/passwords.txt")
+def main():
+    s = Switcher(os.getenv("ADVENT_DAY"))
+    s.run_exercise()
 
-# print(app.count_valid_passwords_part1())
 
-# print(app.count_valid_passwords_part2())
-
-app = modules.exercises.Day3("inputs/day3/map.txt")
-print(app.find_trees_in_path(1, 1) * app.find_trees_in_path(3, 1) *
-      app.find_trees_in_path(5, 1) * app.find_trees_in_path(7, 1) * app.find_trees_in_path(1, 2))
+if __name__ == "__main__":
+    main()
