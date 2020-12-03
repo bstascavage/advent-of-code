@@ -1,11 +1,9 @@
 from modules.helper import Helper
 
-EXPENSE_REPORT = "expense_report.txt"
-
 
 class Day1:
-    def __init__(self, expense_report):
-        self.expense_list = Helper.load_file(expense_report)
+    def __init__(self, expense_file):
+        self.expense_list = Helper.load_file(expense_file)
         self.expense_list = [int(i) for i in self.expense_list]
 
     def expense_compare_two(self, value):

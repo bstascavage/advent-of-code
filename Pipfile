@@ -4,10 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pylint = "*"
 
 [dev-packages]
 autopep8 = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.9"
