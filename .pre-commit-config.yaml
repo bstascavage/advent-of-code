@@ -5,6 +5,15 @@ repos:
       - id: check-yaml
       #- id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: check-ast
+      - id: debug-statements
+      - id: pretty-format-json
+      - id: sort-simple-yaml
+      - id: check-json
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
   - repo: https://github.com/pycqa/pylint
     rev: pylint-2.6.0
     hooks:
