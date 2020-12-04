@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+pre-commit = "*"
 
 [dev-packages]
 autopep8 = "*"

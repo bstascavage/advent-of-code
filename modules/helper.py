@@ -3,6 +3,7 @@
 This module contains misc, common functions for the Advent of Code project.
 
 """
+# pylint: disable=too-few-public-methods
 import sys
 
 

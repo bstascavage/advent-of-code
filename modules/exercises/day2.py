@@ -96,7 +96,7 @@ class Password:
         """
         letter_count = self.password.count(self.letter)
 
-        if (letter_count >= self.lower_threshold) and (letter_count <= self.upper_threshold):
+        if self.lower_threshold <= letter_count <= self.upper_threshold:
             return True
 
         return False

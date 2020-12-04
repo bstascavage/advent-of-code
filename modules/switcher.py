@@ -8,7 +8,7 @@ https://adventofcode.com/2020/
 import importlib
 
 
-class Switcher(object):
+class Switcher:
     """This class is an object for the Advent of Code challenge.
 
     This class loads a given day's module and runs each challenge's functions.
