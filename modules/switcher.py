@@ -73,3 +73,9 @@ class Switcher:
             3, 1) * self.exercise_app.find_trees_in_path(5, 1) * self.exercise_app.find_trees_in_path(7, 1) * self.exercise_app.find_trees_in_path(1, 2)
 
         self.print_results(part_one_answer, part_two_answer)
+
+    def day4(self):
+        """Determines Day 4's anwsers."""
+
+        part_one_answer = self.exercise_app.count_valid_passports()
+        self.print_results(part_one_answer)
