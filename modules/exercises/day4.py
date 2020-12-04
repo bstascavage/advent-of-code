@@ -64,7 +64,6 @@ class Day4:
         for passport in self.passport_list:
             if passport.verify_fields_strict():
                 valid_passports += 1
-            print("*********************")
         return valid_passports
 
 
@@ -160,8 +159,6 @@ class Passport:
         return False
 
     def verify_eye_color(self):
-        print("Eyecolor: %s" % self.eye_color)
-
         if self.eye_color in self.eye_color_lookup:
             return True
 
@@ -169,12 +166,10 @@ class Passport:
 
     def verify_passport_id(self):
         if len(self.passport_id) == 9 and self.passport_id.isdigit():
-            print("PID: %s" % self.passport_id.isdigit())
             return True
 
         return False
 
     def verify_fields_strict(self):
         if self.verify_birth() and self.verify_issue() and self.verify_expired() and self.verify_height() and self.verify_hair_color() and self.verify_eye_color() and self.verify_passport_id():
-            print(self.passport_raw)
             return True
