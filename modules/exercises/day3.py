@@ -6,10 +6,9 @@ class Day3:
         self.map = []
         preprocessed_map = Helper.load_file(map_file)
 
-        # We need to "repeat" the map to the right in order to transverse it.
-        # This "repeats" each line N times, where N is the length of the original map.
+        # Converting file into 2D array
         for line in preprocessed_map:
-            self.map.append(list("".join([line]*len(preprocessed_map))))
+            self.map.append(list("".join([line])))
 
     def find_trees_in_path(self, right_mov, down_mov):
         current_right = right_mov
@@ -20,6 +19,11 @@ class Day3:
             # Need to skip index 0 since we start the count at 1
             if i == 0:
                 continue
+
+            # "Wrap-around" logic.  If current_right exceeds the size of the inner loop, we need to reset it.
+            if current_right > (len(self.map[i]) - 1):
+                current_right = current_right - len(self.map[i])
+
             if self.map[i][current_right] == "#":
                 tree_count += 1
             current_right += right_mov
