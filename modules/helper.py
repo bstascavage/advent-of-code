@@ -1,10 +1,17 @@
+"""Advent of Code helper module.
+
+This module contains misc, common functions for the Advent of Code project.
+
+"""
 import sys
 
 
 class Helper:
+    """This class contains various common, static functions."""
     @staticmethod
     def load_file(file):
         """Loads text file into a list
+
         Args:
             file (str): Path of text file to load
         Returns:
