@@ -78,4 +78,6 @@ class Switcher:
         """Determines Day 4's anwsers."""
 
         part_one_answer = self.exercise_app.count_valid_passports()
-        self.print_results(part_one_answer)
+        part_two_answer = self.exercise_app.count_valid_passports_strict()
+        #part_two_answer = None
+        self.print_results(part_one_answer, part_two_answer)

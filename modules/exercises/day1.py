@@ -38,11 +38,9 @@ class Day1:
             The multiplication product of the two integers whose sum equals the provided value.
             If no integers can be found, returns None.
         """
-        # Sets the list as a set for o(1) lookup of keys
-        expenses = set(self.expense_list)
-
+        # Sets the list as a set for o(1) lookup of keys. x = 2020 - y.
         for expense in self.expense_list:
-            if value - expense in expenses:
+            if value - expense in set(self.expense_list):
                 return expense * (value - expense)
 
         return None
@@ -58,10 +56,10 @@ class Day1:
             The multiplication product of the three integers whose sum equals the provided value.
             If no integers can be found, returns None.
         """
-        expenses = set(self.expense_list)
+        # Sets the list as a set for o(1) lookup of keys. x = 2020 - y.
         for first_expense in self.expense_list:
             for second_expense in self.expense_list:
-                if value - first_expense - second_expense in expenses:
+                if value - first_expense - second_expense in set(self.expense_list):
                     return first_expense * second_expense * (value - first_expense - second_expense)
 
         return None
