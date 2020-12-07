@@ -68,16 +68,11 @@ class Day7:
 
         return len(unique_bags)
 
-    def get_nested_bags(self, bag):
-
-        count = 0
-
+    def get_nested_bags(self, bag, count=0):
         if not self.rules_second[bag]:
-            return 1
+            return 0
         for items in self.rules_second[bag]:
             nested_quanity = self.get_nested_bags(items["unit"])
-            count += items["quanity"]*nested_quanity
+            count += items["quanity"]*nested_quanity + items["quanity"]
 
-            if nested_quanity > 1:
-                count += items["quanity"]
         return count
