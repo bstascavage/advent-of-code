@@ -31,8 +31,17 @@ class Day6:
         # Since the delemeter is "double newline" instead of a single one,
         # we need to split on "\n\n".
         for line in Helper.load_file(form_file, "\n\n"):
-            self.answers.append(
-                {'answers': line.replace('\n', ''), 'group_size': line.count('\n') + 1})
+            new_group = []
+
+            # Each line in a group is it's own element.
+            temp_group = line.split('\n')
+
+            # Transforms the group into a list of sets, where each set is a person's
+            # answers.
+            for person in temp_group:
+                new_group.append(set(person))
+
+            self.answers.append(new_group)
 
         print(self.answers)
 
@@ -45,8 +54,7 @@ class Day6:
         count = 0
 
         for group in self.answers:
-            group = set(group['answers'])
-            count += len(group)
+            count += len(set.union(*group))
 
         return count
 
@@ -54,21 +62,11 @@ class Day6:
         """Counts the number of answers by every person in a group.
 
         Returns:
-            The number of questions everyone answered.
+            The number of questions everyone answered across all groups.
         """
         count = 0
 
         for group in self.answers:
-            freq = {}
-            for answer in group['answers']:
-                if answer in freq:
-                    freq[answer] += 1
-                else:
-                    freq[answer] = 1
-
-            # pylint: disable=unused-variable
-            for key, value in freq.items():
-                if value == group['group_size']:
-                    count += 1
+            count += len(set.intersection(*group))
 
         return count
