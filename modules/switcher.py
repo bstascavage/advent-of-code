@@ -79,5 +79,11 @@ class Switcher:
 
         part_one_answer = self.exercise_app.count_valid_passports()
         part_two_answer = self.exercise_app.count_valid_passports_strict()
-        #part_two_answer = None
+        self.print_results(part_one_answer, part_two_answer)
+
+    def day5(self):
+        """Determines Day 5's anwsers."""
+
+        part_one_answer = self.exercise_app.get_highest_seat()
+        part_two_answer = self.exercise_app.find_missing_seat()
         self.print_results(part_one_answer, part_two_answer)

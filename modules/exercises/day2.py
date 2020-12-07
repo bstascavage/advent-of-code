@@ -109,8 +109,9 @@ class Password:
         Returns:
             True if password is valid, False otherwise.
         """
-        # pylint: disable=line-too-long, superfluous-parens
-        if (self.letter == self.password[self.lower_threshold - 1]) is not (self.letter == self.password[self.upper_threshold - 1]):
+        # pylint: disable=superfluous-parens
+        if (self.letter == self.password[self.lower_threshold - 1]) is not \
+                (self.letter == self.password[self.upper_threshold - 1]):
             return True
 
         return False

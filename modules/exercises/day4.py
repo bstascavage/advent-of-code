@@ -7,8 +7,9 @@ https://adventofcode.com/2020/day/1
 
 """
 # pylint: disable=import-error, too-few-public-methods
-from modules.helper import Helper
 import re
+
+from modules.helper import Helper
 
 
 class Day4:
@@ -58,7 +59,13 @@ class Day4:
 
         return len(self.passport_list)
 
-    def count_valid_passports_strict(self, optional=False):
+    def count_valid_passports_strict(self):
+        """Loops through a list of passport entries, counting how many passports pass
+        a stricter verification test.
+
+        Returns:
+            The total number of valid passowrds.
+        """
         valid_passports = 0
 
         for passport in self.passport_list:
@@ -66,8 +73,31 @@ class Day4:
                 valid_passports += 1
         return valid_passports
 
+# pylint: disable=too-many-instance-attributes
+
 
 class Passport:
+    """This class is a passport object.
+
+    Args:
+        passport_raw (str): The raw passport string
+
+    Attributes:
+        has_all_fields (bool): Whether the passport contains all fields, both
+            required and optional.
+        has_required_fields (bool): Whether the passport contains the required fields.
+        has_optional_fields (bool): Whether the passport contains the optional fields.
+        birth_year (int): The person's birth year.
+        issue_year (int): The year the passport was issued.
+        expired_year (int): The year the passport expires.
+        height (dict): Dictionary containing the person's height and unit of measurement.
+        hair_color (str): Six-digit hexidecimal code for hair color.
+        eye_color (str): Code for eye color lookup.
+        passport_id (int): Unique ID for the passport.
+        country_id (int): Unique ID for the issuing country.
+    """
+
+    # Constants for validation checking
     year_length = 4
     birth_year_lower = 1920
     birth_year_upper = 2002
@@ -92,10 +122,20 @@ class Passport:
     has_required_fields = False
     has_optional_fields = False
 
-    def parse_height(self, height_string):
-        match = re.compile("[^\W\d]").search(height_string)
+    @staticmethod
+    def parse_height(height_string):
+        """Parses a heigh dict based on the raw string.
+
+        Args:
+            height_string (str): The raw string of the person's height.
+
+        Returns:
+            A dictionary with two keys: value and unit of measurement.
+        """
+        match = re.compile("[^\\W\\d]").search(height_string)
         if bool(match):
-            return {"value": int(height_string[:match.start()]), "unit": height_string[match.start():]}
+            return {"value": int(height_string[:match.start()]),
+                    "unit": height_string[match.start():]}
 
         return None
 
@@ -124,31 +164,63 @@ class Passport:
                 self.country_id = passport_raw["cid"]
 
     def verify_birth(self):
-        if len(str(self.birth_year)) == self.year_length and (self.birth_year_lower <= self.birth_year <= self.birth_year_upper):
+        """Checks to see if the person's birthday is inbetween the valid birth year range.
+
+        Returns:
+            Boolean if the birth_year is valid.
+        """
+        if len(str(self.birth_year)) == self.year_length and \
+                (self.birth_year_lower <= self.birth_year <= self.birth_year_upper):
             return True
-        else:
-            return False
+
+        return False
 
     def verify_issue(self):
-        if len(str(self.issue_year)) == self.year_length and (self.issue_year_lower <= self.issue_year <= self.issue_year_upper):
+        """Checks to see if the person's issued year is inbetween the valid issued year range.
+
+        Returns:
+            Boolean if the issue_year is valid.
+        """
+        if len(str(self.issue_year)) == self.year_length and \
+                (self.issue_year_lower <= self.issue_year <= self.issue_year_upper):
             return True
-        else:
-            return False
+
+        return False
 
     def verify_expired(self):
-        if len(str(self.expired_year)) == self.year_length and (self.expired_year_lower <= self.expired_year <= self.expired_year_upper):
+        """Checks to see if the person's expiration year is inbetween the
+            valid expiration year range.
+
+        Returns:
+            Boolean if the expired_year is valid.
+        """
+        if len(str(self.expired_year)) == self.year_length and \
+                (self.expired_year_lower <= self.expired_year <= self.expired_year_upper):
             return True
-        else:
-            return False
+
+        return False
 
     def verify_height(self):
+        """Checks to see if the person's height is inbetween the valid range for their given
+            unit of measurement.
+
+        Returns:
+            Boolean if the height is valid.
+        """
         if self.height is not None:
-            if self.height_lower[self.height["unit"]] <= self.height["value"] <= self.height_upper[self.height["unit"]]:
+            if self.height_lower[self.height["unit"]] \
+                <= self.height["value"] \
+                    <= self.height_upper[self.height["unit"]]:
                 return True
 
         return False
 
     def verify_hair_color(self):
+        """Checks to see if the person's hair color is a valid 6 digit hexidecimal number.
+
+        Returns:
+            Boolean if the hair_color is valid.
+        """
         if self.hair_color.startswith("#") and (len(self.hair_color) == 7):
             try:
                 int(self.hair_color.strip("#"), 16)
@@ -159,17 +231,38 @@ class Passport:
         return False
 
     def verify_eye_color(self):
+        """Checks to see if the person's eye color is a valid value.
+
+        Returns:
+            Boolean if the eye_color is valid.
+        """
         if self.eye_color in self.eye_color_lookup:
             return True
 
         return False
 
     def verify_passport_id(self):
+        """Checks to see if the person's passport ID is a valid 9 digit number.
+
+        Returns:
+            Boolean if the passport_id is valid.
+        """
         if len(self.passport_id) == 9 and self.passport_id.isdigit():
             return True
 
         return False
 
     def verify_fields_strict(self):
-        if self.verify_birth() and self.verify_issue() and self.verify_expired() and self.verify_height() and self.verify_hair_color() and self.verify_eye_color() and self.verify_passport_id():
+        """Checks all passport fields for validation.
+
+        Returns:
+            Boolean if all required passport fields are valid.
+        """
+
+        checks = [self.verify_birth(), self.verify_issue(), self.verify_expired(),
+                  self.verify_height(), self.verify_hair_color(), self.verify_eye_color(),
+                  self.verify_passport_id()]
+        if all(checks):
             return True
+
+        return False

@@ -19,7 +19,7 @@ class Day3:
         map_file (str): Path to the toboggan map file.
 
     Attributes:
-        map (str): Post-processed 2D array of toboggan map.
+        map (list): Post-processed 2D array of toboggan map.
 
     """
 
