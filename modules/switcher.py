@@ -89,8 +89,15 @@ class Switcher:
         self.print_results(part_one_answer, part_two_answer)
 
     def day6(self):
-        """Determines Day 5's anwsers."""
+        """Determines Day 6's anwsers."""
 
         part_one_answer = self.exercise_app.count_unique_group_answers()
         part_two_answer = self.exercise_app.count_complete_group_answers()
+        self.print_results(part_one_answer, part_two_answer)
+
+    def day7(self):
+        """Determines Day 7's anwsers."""
+
+        part_one_answer = self.exercise_app.get_bag_count("shiny gold")
+        part_two_answer = self.exercise_app.get_nested_bags("shiny gold")
         self.print_results(part_one_answer, part_two_answer)

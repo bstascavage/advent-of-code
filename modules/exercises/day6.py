@@ -6,7 +6,7 @@ You can find the problem here:
 https://adventofcode.com/2020/day/6
 
 """
-# pylint: disable=import-error, too-few-public-methods
+# pylint: disable=import-error
 from modules.helper import Helper
 
 
@@ -42,8 +42,6 @@ class Day6:
                 new_group.append(set(person))
 
             self.answers.append(new_group)
-
-        print(self.answers)
 
     def count_unique_group_answers(self):
         """Counts the number of unique answers in each group.
