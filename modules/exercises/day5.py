@@ -19,7 +19,7 @@ class Day5:
         boading_pass_file (str): Path to the list of boarding passes file.
 
     Attributes:
-        boarding_passes (str): Post-processed 2D array of toboggan map.
+        boarding_passes (str): Post-processed array of boarding passes.
 
     """
 
