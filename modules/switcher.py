@@ -101,3 +101,10 @@ class Switcher:
         part_one_answer = self.exercise_app.get_bag_count("shiny gold")
         part_two_answer = self.exercise_app.get_nested_bags("shiny gold")
         self.print_results(part_one_answer, part_two_answer)
+
+    def day8(self):
+        """Determines Day 8's anwsers."""
+
+        part_one_answer = self.exercise_app.check_loop()
+        part_two_answer = self.exercise_app.check_all_loops()
+        self.print_results(part_one_answer, part_two_answer)
