@@ -1,6 +1,6 @@
 # pylint: disable=undefined-all-variable, import-error, missing-module-docstring
 __all__ = ['day1', 'day2', 'day3', 'day4',
-           'day5', 'day6', 'day7', 'day8', 'day9']
+           'day5', 'day6', 'day7', 'day8', 'day9', 'day10']
 
 from .day1 import Day1
 from .day2 import Day2
@@ -11,3 +11,4 @@ from .day6 import Day6
 from .day7 import Day7
 from .day8 import Day8
 from .day9 import Day9
+from .day10 import Day10

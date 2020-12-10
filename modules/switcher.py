@@ -115,3 +115,10 @@ class Switcher:
         part_one_answer = self.exercise_app.find_first_wrong_number(25)
         part_two_answer = self.exercise_app.find_contiguous(part_one_answer)
         self.print_results(part_one_answer, part_two_answer)
+
+    def day10(self):
+        """Determines Day 10's anwsers."""
+
+        part_one_answer = self.exercise_app.find_freq()
+        part_two_answer = self.exercise_app.find_path()
+        self.print_results(part_one_answer, part_two_answer)
