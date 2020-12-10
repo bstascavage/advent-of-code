@@ -7,8 +7,8 @@ https://adventofcode.com/2020/day/6
 
 """
 # pylint: disable=import-error
-from modules.helper import Helper
 import copy
+from modules.helper import Helper
 
 
 class Day8:
@@ -29,6 +29,7 @@ class Day8:
         self.instructions = []
         self.acc_global = 0
         self.commands = set()
+        self.test_bool = False
 
         # This logic split this horrible file into an array of dicts.
         # Since the delemeter is "double newline" instead of a single one,
@@ -44,22 +45,15 @@ class Day8:
         self.acc_global = self.process_instruction(self.instructions,
                                                    0, 0, used_commands)
 
-        # # print(self.acc_global)
-        # if self.acc_global == 0:
-        #     # print("fooo")
-        #     # print(self.instructions)
-        #     self.acc_global = 0
-        #     used_commands = set()
-        #     self.acc_global = self.process_instruction(
-        #         0, 0, used_commands)
-
         return self.acc_global
 
     def check_all_loops(self):
 
+        # TODO: Only change an instructions if it was in the initial run.
         for index, item in enumerate(self.instructions):
             copy_instructions = copy.deepcopy(self.instructions)
             used_commands = set()
+            should_run = False
             self.test_bool = True
 
             if item['operation'] == "jmp":
@@ -71,8 +65,9 @@ class Day8:
                 should_run = True
             else:
                 continue
-            acc = self.process_instruction(
-                copy_instructions, 0, 0, used_commands)
+            if should_run:
+                acc = self.process_instruction(
+                    copy_instructions, 0, 0, used_commands)
 
             if self.test_bool:
                 return acc
