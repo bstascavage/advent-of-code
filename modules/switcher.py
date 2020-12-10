@@ -106,7 +106,7 @@ class Switcher:
         """Determines Day 8's anwsers."""
 
         part_one_answer = self.exercise_app.check_loop()
-        part_two_answer = self.exercise_app.check_all_loops()
+        part_two_answer = self.exercise_app.fix_loop()
         self.print_results(part_one_answer, part_two_answer)
 
     def day9(self):
