@@ -6,7 +6,7 @@ You can find the problem here:
 https://adventofcode.com/2020/day/1
 
 """
-# pylint: disable=import-error
+# pylint: disable=import-error,no-name-in-module
 from modules.helper import Helper
 
 

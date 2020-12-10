@@ -6,7 +6,7 @@ You can find the problem here:
 https://adventofcode.com/2020/day/7
 
 """
-# pylint: disable=import-error
+# pylint: disable=import-error, no-name-in-module
 import re
 from modules.helper import Helper
 
@@ -61,8 +61,33 @@ class Day7:
                 self.rules_count_all[bag_key].append(
                     {"quanity": int(items[0]), "unit": items[1]})
 
-    def count_paths_to_bag(self, bag, bag_list):
+    def get_bag_count(self, bag):
+        """Counts the number of unique colors that could contain a given bag color.
+        Wrapper function around `count_paths_to_bag`.
 
+        Args:
+            bag (str): A bag color to search.
+
+        Returns:
+            The number of unique bags found.
+        """
+        unique_bags = set()
+
+        self.count_paths_to_bag(bag, unique_bags)
+
+        return len(unique_bags)
+
+    def count_paths_to_bag(self, bag, bag_list):
+        """Counts the number of unique colors that could contain a given bag color.
+        This function is meant to be called recursively.
+
+        Args:
+            bag (str): A bag color to search.
+            bag_list (dict): A set of unique bags already found.
+
+        Returns:
+            A list of unique bags found.
+        """
         if bag in self.rules_count_unique:
             for bags in self.rules_count_unique[bag]:
                 if bags not in bag_list:
@@ -71,14 +96,17 @@ class Day7:
 
         return bag_list
 
-    def get_bag_count(self, bag):
-        unique_bags = set()
-
-        self.count_paths_to_bag(bag, unique_bags)
-
-        return len(unique_bags)
-
     def get_nested_bags(self, bag, count=0):
+        """Counts the number of bags inside a given bag color.  This function is meant to be
+        called recursively.
+
+        Args:
+            bag (str): A bag color to search.
+            count (int): The number of bags inside the given bag.
+
+        Returns:
+            The number of unique bags found.
+        """
         if not self.rules_count_all[bag]:
             return 0
         for items in self.rules_count_all[bag]:

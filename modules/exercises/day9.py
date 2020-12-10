@@ -6,7 +6,7 @@ You can find the problem here:
 https://adventofcode.com/2020/day/9
 
 """
-# pylint: disable=import-error
+# pylint: disable=import-error, no-name-in-module
 import itertools
 from modules.helper import Helper
 

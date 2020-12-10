@@ -6,7 +6,7 @@ You can find the problem here:
 https://adventofcode.com/2020/day/6
 
 """
-# pylint: disable=import-error
+# pylint: disable=import-error,no-name-in-module
 import copy
 from modules.helper import Helper
 
@@ -56,6 +56,7 @@ class Day8:
         Returns:
             The acc value of a successful set of instructions.
         """
+        # pylint: disable=fixme
         # TODO: Only change an instructions if it was in the initial run.
         for index, item in enumerate(self.instructions):
             copy_instructions = copy.deepcopy(self.instructions)

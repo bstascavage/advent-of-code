@@ -6,7 +6,7 @@ You can find the problem here:
 https://adventofcode.com/2020/day/1
 
 """
-# pylint: disable=import-error, too-few-public-methods
+# pylint: disable=import-error, no-name-in-module, too-few-public-methods
 import re
 
 from modules.helper import Helper

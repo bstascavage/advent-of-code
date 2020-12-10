@@ -8,7 +8,7 @@ https://adventofcode.com/2020/
 """
 import os
 
-# pylint: disable=import-error
+# pylint: disable=import-error,no-name-in-module
 from dotenv import load_dotenv
 from modules.switcher import Switcher
 
