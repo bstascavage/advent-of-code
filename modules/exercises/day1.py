@@ -24,8 +24,8 @@ class Day1:
     """
 
     def __init__(self, expense_file):
-        self.expense_list = Helper.load_file(expense_file)
-        self.expense_list = [int(i) for i in self.expense_list]
+        self.expense_list = Helper.load_file(expense_file, cast_int=True)
+        #self.expense_list = [int(i) for i in self.expense_list]
 
     def expense_compare_two(self, value):
         """Loops through a list of integers.

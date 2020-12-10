@@ -26,10 +26,7 @@ class Day9:
 
     def __init__(self, xmas_file):
         self.xmas_data = []
-        temp_data = Helper.load_file(xmas_file)
-
-        for elem in temp_data:
-            self.xmas_data.append(int(elem))
+        self.xmas_data = Helper.load_file(xmas_file, cast_int=True)
 
     def find_first_wrong_number(self, premble_length):
         """Finds the first number in the list of ints who is not the sum of
